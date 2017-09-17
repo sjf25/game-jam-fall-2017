@@ -10,7 +10,7 @@ public class Garage : Building {
 	void Start () {
 		this.Width = 3;
 		this.Height = 2; 
-		this.Cost = 100;
+		this.Cost = 40;
 		this.CarryingCap = 10;
 		this.CostMultiply = 1.3;
 		this.CostUpgrade = 1.25;

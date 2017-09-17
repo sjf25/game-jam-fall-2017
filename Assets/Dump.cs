@@ -8,7 +8,7 @@ public class Dump : Building {
 	void Start () {
 		this.Width = 3;
 		this.Height = 3;
-		this.Cost = 50;
+		this.Cost = 30;
 		this.CarryingCap = 10;
 		this.CostMultiply = 1.25;
 		this.CostUpgrade = 1.25;

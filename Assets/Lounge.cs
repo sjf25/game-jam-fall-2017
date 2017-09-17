@@ -11,7 +11,8 @@ public class Lounge : Building {
 		Debug.Log ("Lounge\n");
 		this.Width = 2;
 		this.Height = 2;
-		this.Cost = 100;
+		//this.Cost = 100;
+		this.Cost = 30;
 		this.CarryingCap = 10; 
 		this.CostMultiply = 1.4;
 		this.CostUpgrade = 1.25;

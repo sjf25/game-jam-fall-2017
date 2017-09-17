@@ -12,6 +12,7 @@ public class Grid : MonoBehaviour {
 	private GameObject buildingGameObj = null;
 	private Vector3 tileBound;
 	private int placeX = 0, placeY = 0;
+	public AudioClip buySound;
 	//public Texture2D gridTexture;
 	//private List<List<GridSquare>> gridSquares = new List<List<GridSquare>>();
 
@@ -99,6 +100,9 @@ public class Grid : MonoBehaviour {
 					placingPiece = false;
 					placeX = placeY = 0;
 					placeBuilding.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
+					AudioSource audioSrc = GetComponent<AudioSource> ();
+					audioSrc.clip = buySound;
+					audioSrc.Play ();
 				}
 			}
 		}

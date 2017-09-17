@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class User : MonoBehaviour
 {
 
     private bool inPlay = true; //is the player playing
-    private float money; //money
+    private double money = 100; //money
 	public List<Building> ownedProps;
 	private float totalGarbage = 0;
 
@@ -16,7 +17,7 @@ public class User : MonoBehaviour
         set { inPlay = value; }
     }
 
-    public float Money
+    public double Money
     {
         get { return money; }
         set { money = value; }
@@ -32,6 +33,9 @@ public class User : MonoBehaviour
     
     void Update()
     {
+		if(money >= 1000) {
+			// TODO: handle win
+		}
 		GameObject gridObj = GameObject.FindGameObjectWithTag ("grid");
 		Grid grid = gridObj.GetComponent<Grid> ();
 		int garageCount = 0;
@@ -57,7 +61,9 @@ public class User : MonoBehaviour
 			acceptedGarbage = newGarbageCount;
 			totalGarbage += newGarbageCount;
 		}
-		money += acceptedGarbage;
+		money += (double)acceptedGarbage;
+		GameObject moneyText = GameObject.FindGameObjectWithTag ("money");
+		moneyText.GetComponent<Text> ().text = "Money: $" + ((int)money);
 		Debug.Log (money);
         // TODO: check end
     }
