@@ -5,18 +5,18 @@ using UnityEngine;
 public class User : MonoBehaviour
 {
 
-    private static bool inPlay = true; //is the player playing
-    private static float money; //money
-	public static List<Building> ownedProps;
-	private totalGarbage = 0;
+    private bool inPlay = true; //is the player playing
+    private float money; //money
+	public List<Building> ownedProps;
+	private float totalGarbage = 0;
 
-    public static bool IsPlaying
+    public bool IsPlaying
     { //Cost of the building
         get { return inPlay; }
         set { inPlay = value; }
     }
 
-    public static float Money
+    public float Money
     {
         get { return money; }
         set { money = value; }
@@ -35,12 +35,29 @@ public class User : MonoBehaviour
 		GameObject gridObj = GameObject.FindGameObjectWithTag ("grid");
 		Grid grid = gridObj.GetComponent<Grid> ();
 		int garageCount = 0;
-		int dumpCount;
-		for (int i = 0; i < grid.Builings.Count; i++) {
-			if (grid.Builings [i] is Garage)
+		int dumpCount = 0;
+		int loungeCount = 0;
+		for (int i = 0; i < grid.Buildings.Count; i++) {
+			if (grid.Buildings [i] is Garage)
 				garageCount++;
+			else if (grid.Buildings [i] is Dump)
+				dumpCount++;
+			else if (grid.Buildings [i] is Lounge)
+				loungeCount++;
 		}
-		money += garageCount * Time.deltaTime;
+		// need one lounge per 3 garages
+		dumpCount = Mathf.Min (dumpCount, loungeCount * 3);
+		float dumpCapacity = 30*dumpCount;
+		float newGarbageCount = garageCount * Time.deltaTime;
+		float acceptedGarbage;
+		if (newGarbageCount + totalGarbage >= dumpCapacity) {
+			acceptedGarbage = dumpCapacity - totalGarbage;
+			totalGarbage = dumpCapacity;
+		} else {
+			acceptedGarbage = newGarbageCount;
+			totalGarbage += newGarbageCount;
+		}
+		money += acceptedGarbage;
 		Debug.Log (money);
         // TODO: check end
     }

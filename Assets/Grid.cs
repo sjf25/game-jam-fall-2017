@@ -150,7 +150,7 @@ public class Grid : MonoBehaviour {
 		return true;
 	}
 
-	public List<Building> Builings {
+	public List<Building> Buildings {
 		get { return buildings; }
 	}
 
