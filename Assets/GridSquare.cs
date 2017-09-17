@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridSquare : MonoBehaviour {
 	private bool occupied = false;
+	public Vector2 gridLoc;
 	// Use this for initialization
 	void Start () {
 		

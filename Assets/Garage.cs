@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-public class Lounge : Building {
+public class Garage : Building {
+	
+
 
 	// Use this for initialization
 	void Start () {
-		//level0Res = "breakroom 0";
-		Debug.Log ("Lounge\n");
-		this.Width = 2;
-		this.Height = 2;
+		this.Width = 3;
+		this.Height = 2; 
 		this.Cost = 100;
-		this.CarryingCap = 10; 
-		this.CostMultiply = 1.4;
+		this.CarryingCap = 10;
+		this.CostMultiply = 1.3;
 		this.CostUpgrade = 1.25;
 	}
 	
@@ -23,7 +22,7 @@ public class Lounge : Building {
 	}
 
 	public override Sprite getLevel0Sprite() {
-		return Resources.Load ("breakroom 0", typeof(Sprite)) as Sprite;
+		return Resources.Load ("Garage 1", typeof(Sprite)) as Sprite;
 	}
 
 	void OnMouseDown() {

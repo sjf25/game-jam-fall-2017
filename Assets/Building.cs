@@ -13,11 +13,14 @@ public class Building : MonoBehaviour {
 
 	//private int maxLevel = 2;
 	//private int level = 0;
+	//private string level0Res;
 
 
 	//public Sprite spriteBuilding;
 	public int level = 0;
 	public List<Sprite> sprites;
+
+	//public Sprite level0Sprite;
 
 	public double Cost //Cost of the building
 	{
@@ -67,7 +70,9 @@ public class Building : MonoBehaviour {
 		GetComponent<SpriteRenderer> ().sprite = sprites [level];
 	}
 
-
+	public virtual Sprite getLevel0Sprite () {
+		return new Sprite ();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -78,5 +83,17 @@ public class Building : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void dialogHelper() {
+		if (level != sprites.Count - 1) {
+			Debug.Log ("CLICKED\n");
+			GameObject temp = new GameObject ();
+			temp.AddComponent<UI> ();
+			temp.GetComponent<UI> ().b = this;
+			temp.GetComponent<UI> ().upgradeShow = true;
+			//new UI().upgradeMessageBox (this);
+		}
+		//Debug.Log ("CLICKED\n");
 	}
 }
